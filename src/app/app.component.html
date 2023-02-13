@@ -1,15 +1,88 @@
-<app-header></app-header>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">E-commerce dashboard</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarColor01"
+      aria-controls="navbarColor01"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <div class="w-100 d-flex align-items-center justify-content-end">
+        <form class="d-flex">
+          <input
+            class="form-control me-sm-2"
+            type="search"
+            placeholder="Search"
+            [(ngModel)]="search_query"
+            name="search_query"
+          />
+          <button class="btn btn-secondary my-2 my-sm-0" type="submit">
+            Search
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</nav>
+
 
 <style>
+  .body{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
   .filters {
     width: 25%;
-    background-color: red;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  }
+  .item-cards{
+    width:70% ; 
+  }
+  .row{
+    display:flex ;
+  }
+  @media screen and (max-width:980px) {
+    .body{
+      flex-direction: column;
+    }
+    .filters{
+      width: 100%;
+    }
+    .item-cards{
+      width: 100%;
+    }
+    .row{
+      justify-content: center;
+      align-items: center;
+    }
   }
 </style>
 
 <div class="body">
+  
   <div class="filters">
-    <app-filters></app-filters>
+    <app-filters ></app-filters>
   </div>
-  <div class="item-cards"></div>
+
+
+  <div class="item-cards">
+    <div class="row" >
+      <div class="item my-1 col-sm-12 col-md-6 col-xl-3" *ngFor="let item of items | searchQuery: search_query" >
+        <div class="card" >
+          <img height="250px" src={{item.image_url}} class="card-img-top" >
+          <div class="card-body">
+            <h5 class="card-title" >{{item.name}}</h5>
+            <p class="card-text" >{{item.desc}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

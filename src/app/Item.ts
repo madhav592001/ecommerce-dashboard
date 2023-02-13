@@ -1,5 +1,5 @@
 export interface Item{
-    name:String,
+    name:string,
     image_url:String, 
     desc:String,
     price:String,

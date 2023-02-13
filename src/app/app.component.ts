@@ -8,8 +8,9 @@ import { Item } from './Item';
 })
 export class AppComponent {
   items:Item[] ; 
+  search_query:string ; 
 
-  constructor() {
+  ngOnInit(): void {
     this.items = [
       {
         name:"Smart watch",
